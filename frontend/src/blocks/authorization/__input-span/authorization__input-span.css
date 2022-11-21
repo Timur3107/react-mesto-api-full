@@ -1,0 +1,7 @@
+.authorization__input-span {
+    border-bottom: 2px solid #CCCCCC;
+}
+
+.authorization__input-span:first-of-type {
+    margin-bottom: 30px;
+}

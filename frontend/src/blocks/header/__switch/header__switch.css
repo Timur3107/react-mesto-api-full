@@ -1,0 +1,16 @@
+.header__switch {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    text-decoration: none;
+    color: white;
+    cursor: pointer;
+    max-height: 22px;
+    transition: opacity 0.3s linear;
+}
+
+.header__switch:hover{
+    opacity: 0.6;
+}

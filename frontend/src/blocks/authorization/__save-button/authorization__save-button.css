@@ -1,0 +1,15 @@
+.authorization__save-button {
+    margin: 216px 0 15px 0;
+    height: 50px;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+    cursor: pointer;
+    transition: opacity 0.3s linear;
+}
+
+.authorization__save-button:hover{
+    opacity: 0.8;
+}
