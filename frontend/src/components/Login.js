@@ -45,7 +45,7 @@ function Login({handleAuthorize}) {
                     <button className="authorization__save-button" type="submit">Войти</button>
                     <div className="authorization__text-container">
                         <p className="authorization__paragraph">Ещё не зарегистрированы?&nbsp;</p>
-                        <Link className="authorization__link" to="/sign-up">Зарегистрироваться</Link>
+                        <Link className="authorization__link" to="/signup">Зарегистрироваться</Link>
                     </div>
                 </form>
             </div>

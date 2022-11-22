@@ -45,7 +45,7 @@ function Register({handleRegister}) {
                     <button className="authorization__save-button" type="submit">Зарегистрироваться</button>
                     <div className="authorization__text-container">
                         <p className="authorization__paragraph">Уже зарегистрированы?&nbsp;</p>
-                        <Link className="authorization__link" to="/sign-in">Войти</Link>
+                        <Link className="authorization__link" to="/signin">Войти</Link>
                     </div>
                 </form>
             </div>

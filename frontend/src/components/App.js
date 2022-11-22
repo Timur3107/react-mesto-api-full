@@ -43,8 +43,8 @@ function App() {
     if (loggedIn) {
       Promise.all([api.getInitialCards(), api.getUserInfo()])
         .then(([initialCards, info]) => {
-          setCards(initialCards)
-          setCurrentUser(info)
+          setCards(initialCards.data)
+          setCurrentUser(info.data)
         })
         .catch((error) => {
           console.log(error)
@@ -54,7 +54,7 @@ function App() {
 
   // лайк карточки
   const handleCardLike = (card) => {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
 
     api.changeLikeCardStatus(card._id, !isLiked).then((newCard) => {
       setCards((state) => state.map((c) => c._id === card._id ? newCard : c));
@@ -80,7 +80,7 @@ function App() {
   // обновить профиль
   const handleUpdateUser = (info) => {
     api.setUserInfo(info.name, info.about).then((info) => {
-      setCurrentUser(info)
+      setCurrentUser(info.data)
       closeAllPopups()
     })
       .catch((error) => {
@@ -91,7 +91,7 @@ function App() {
   // обновить аватар
   const handleUpdateAvatar = (info) => {
     api.setAvatar(info.avatar).then((info) => {
-      setCurrentUser(info)
+      setCurrentUser(info.data)
       closeAllPopups()
     })
       .catch((error) => {
@@ -102,7 +102,7 @@ function App() {
   // добавить новую карточку
   const handleAddPlaceSubmit = (newCard) => {
     api.addCard(newCard).then((newCard) => {
-      setCards([newCard, ...cards])
+      setCards([newCard.data, ...cards])
       closeAllPopups()
     })
       .catch((error) => {
@@ -115,7 +115,7 @@ function App() {
     auth.register(data).then((data) => {
       if (data.data._id || data.data.email) {
         setIsSuccess(true)
-        history.push("/sign-in")
+        history.push("/signin")
       }
     })
       .catch((error) => {
@@ -161,7 +161,7 @@ function App() {
     localStorage.removeItem('jwt')
     setLoggedIn(false)
     setEmail("")
-    history.push('/sign-in')
+    history.push('/signin')
   }
 
   // открытие попапов:
@@ -221,16 +221,16 @@ function App() {
             onCardDelete={handleCardDeleteClick}
           />
 
-          <Route path="/sign-up">
+          <Route path="/signup">
             <Register handleRegister={handleRegister} />
           </Route>
 
-          <Route path="/sign-in">
+          <Route path="/signin">
             <Login handleAuthorize={handleAuthorize} />
           </Route>
 
           <Route>
-            {loggedIn ? <Redirect to="/" /> : <Redirect to="/sign-in" />}
+            {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
           </Route>
 
         </Switch>

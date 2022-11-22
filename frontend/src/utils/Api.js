@@ -17,20 +17,20 @@ class Api {
 
   getInitialCards() {
     return this._request(`${this._url}/cards`, {
-      headers: this._headers
+      headers: {authorization: `Bearer ${localStorage.getItem('jwt')}`, ...this._headers},
     })
   }
 
   getUserInfo() {
     return this._request(`${this._url}/users/me`, {
-      headers: this._headers
+      headers: {authorization: `Bearer ${localStorage.getItem('jwt')}`, ...this._headers},
     })
   }
 
   setUserInfo(name, about) {
     return this._request(`${this._url}/users/me`, {
       method: 'PATCH',
-      headers: this._headers,
+      headers: {authorization: `Bearer ${localStorage.getItem('jwt')}`, ...this._headers},
       body: JSON.stringify({
         name: name,
         about: about
@@ -41,7 +41,7 @@ class Api {
   addCard(data) {
     return this._request(`${this._url}/cards`, {
       method: 'POST',
-      headers: this._headers,
+      headers: {authorization: `Bearer ${localStorage.getItem('jwt')}`, ...this._headers},
       body: JSON.stringify({
         name: data.name,
         link: data.link
@@ -52,7 +52,7 @@ class Api {
   deleteCard(id) {
     return this._request(`${this._url}/cards/${id}`, {
       method: "DELETE",
-      headers: this._headers
+      headers: {authorization: `Bearer ${localStorage.getItem('jwt')}`, ...this._headers},
     })
   }
 
@@ -60,12 +60,12 @@ class Api {
     if (isLiked) {
       return this._request(`${this._url}/cards/${id}/likes`, {
         method: "PUT",
-        headers: this._headers
+        headers: {authorization: `Bearer ${localStorage.getItem('jwt')}`, ...this._headers},
       })
     } else {
       return this._request(`${this._url}/cards/${id}/likes`, {
         method: "DELETE",
-        headers: this._headers
+        headers: {authorization: `Bearer ${localStorage.getItem('jwt')}`, ...this._headers},
       })
     }
   }
@@ -73,7 +73,7 @@ class Api {
   setAvatar(url) {
     return this._request(`${this._url}/users/me/avatar`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {authorization: `Bearer ${localStorage.getItem('jwt')}`, ...this._headers},
       body: JSON.stringify({
         avatar: url
       })
@@ -82,7 +82,7 @@ class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'https://api.mesto.gin.nomoredomains.club/',
+  baseUrl: 'https://api.mesto.gin.nomoredomains.club',
   headers: {
     'Content-Type': 'application/json'
   }
