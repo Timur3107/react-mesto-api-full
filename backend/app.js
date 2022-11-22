@@ -28,12 +28,12 @@ app.get('/crash-test', () => {
 app.use('/', require('./routes/users'));
 app.use('/', require('./routes/cards'));
 
-app.use(errorLogger);
-app.use(errors());
-
 app.use(() => {
   throw new NotFoundError('Такая страница не найдена!');
 });
+
+app.use(errorLogger);
+app.use(errors());
 
 app.use(errorHandler);
 

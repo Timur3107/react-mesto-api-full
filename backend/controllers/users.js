@@ -99,7 +99,7 @@ module.exports.updateUser = (req, res, next) => {
         return next(new IncrorrectDataError('Переданы некорректные данные при обновлении профиля!'));
       }
       if (err.name === 'CastError') {
-        return next(new NotFoundError('Пользователь не найден!'));
+        return next(new NotFoundError('Некорректный _id!'));
       }
       return next(err);
     });
@@ -122,7 +122,7 @@ module.exports.updateAvatar = (req, res, next) => {
         return next(new IncrorrectDataError('Переданы некорректные данные при обновлении аватара!'));
       }
       if (err.name === 'CastError') {
-        return next(new NotFoundError('Пользователь не найден!'));
+        return next(new NotFoundError('Некорректный _id!'));
       }
       return next(err);
     });
