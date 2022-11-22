@@ -3,6 +3,7 @@ const allowedCors = [
   'http://mesto.gin.nomoredomains.club',
   'http://localhost:3000',
   'http://localhost:3001',
+  'https://api.mesto.gin.nomoredomains.club',
 ];
 
 module.exports = (req, res, next) => {
